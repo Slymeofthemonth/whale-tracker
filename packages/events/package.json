@@ -1,0 +1,17 @@
+{
+  "name": "@whale-tracker/events",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Event pipeline and storage (Jock's domain)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@whale-tracker/shared": "*",
+    "better-sqlite3": "^11.0.0"
+  }
+}

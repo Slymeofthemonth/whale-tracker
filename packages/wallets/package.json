@@ -1,0 +1,16 @@
+{
+  "name": "@whale-tracker/wallets",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wallet list curation and management",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@whale-tracker/shared": "*"
+  }
+}

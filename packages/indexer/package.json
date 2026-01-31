@@ -1,0 +1,19 @@
+{
+  "name": "@whale-tracker/indexer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "On-chain activity indexer (Jock's domain)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@whale-tracker/shared": "*",
+    "@whale-tracker/wallets": "*",
+    "@whale-tracker/events": "*"
+  }
+}
