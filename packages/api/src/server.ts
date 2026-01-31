@@ -22,8 +22,8 @@ async function main() {
     dbPath: DB_PATH,
   });
   
-  // Don't await - let it run in background
-  indexer.start().catch(err => {
+  // Don't await - let it run in background (fire and forget)
+  indexer.start().catch((err: Error) => {
     console.error('❌ Indexer error:', err);
   });
   

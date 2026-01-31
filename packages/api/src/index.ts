@@ -108,8 +108,8 @@ app.get('/stats', async (c) => {
   const wallets = getWallets();
   const recentEvents = await eventStore.query({ limit: 100 });
   
-  const highSignificance = recentEvents.filter(e => e.significance === 'high').length;
-  const mediumSignificance = recentEvents.filter(e => e.significance === 'medium').length;
+  const highSignificance = recentEvents.filter((e: { significance: string }) => e.significance === 'high').length;
+  const mediumSignificance = recentEvents.filter((e: { significance: string }) => e.significance === 'medium').length;
   
   return c.json({
     trackedWallets: wallets.length,
