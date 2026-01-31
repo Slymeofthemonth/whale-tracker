@@ -21,9 +21,9 @@ export interface IndexerConfig {
 }
 
 const DEFAULT_RPC_URLS: Record<Chain, string> = {
-  ethereum: 'https://eth.llamarpc.com',
+  ethereum: process.env.ETH_RPC_URL || 'https://eth.drpc.org',
   solana: '', // Not implemented yet
-  base: 'https://mainnet.base.org',
+  base: process.env.BASE_RPC_URL || 'https://mainnet.base.org',
 };
 
 export class Indexer {
