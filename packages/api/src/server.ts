@@ -16,6 +16,7 @@ import type { Chain } from '@whale-tracker/shared';
 
 const PORT = parseInt(process.env.PORT || '3000');
 const DB_PATH = process.env.DB_PATH || './data/whale-events.db';
+const ETH_RPC_URL = process.env.ETH_RPC_URL || 'https://eth.drpc.org';
 
 console.log('🔧 Starting Whale Tracker Agent (Lucid Agents SDK v1.0.0)');
 
@@ -181,9 +182,11 @@ async function main() {
   });
 
   // Start the indexer in the background
+  console.log(`🔗 RPC URL: ${ETH_RPC_URL}`);
   const indexer = new Indexer({
     chain: 'ethereum',
     dbPath: DB_PATH,
+    rpcUrl: ETH_RPC_URL,
   });
   
   indexer.start().catch((err: Error) => {
