@@ -6,8 +6,9 @@
  */
 
 import { Wallet, Chain } from '@whale-tracker/shared';
+import ethWhalesData from './data/eth-whales.json';
 
-// In-memory wallet store (will be backed by file/db later)
+// In-memory wallet store
 const wallets: Map<string, Wallet> = new Map();
 
 /**
@@ -66,51 +67,21 @@ export function getAddresses(chain: Chain): string[] {
 }
 
 /**
- * Seed with initial whale wallets
+ * Seed with whale wallets from data files
  */
 export function seedDefaultWallets(): void {
-  // Top ETH whales - well-known addresses
-  const defaults: Omit<Wallet, 'addedAt'>[] = [
-    {
-      address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+  // Load ETH whales from JSON
+  for (const whale of ethWhalesData) {
+    addWallet({
+      address: whale.address,
       chain: 'ethereum',
-      label: 'Vitalik Buterin',
-      source: 'manual',
-      tags: ['founder', 'influencer'],
-    },
-    {
-      address: '0x47ac0Fb4F2D84898e4D9E7b4DaB3C24507a6D503',
-      chain: 'ethereum',
-      label: 'Binance',
-      source: 'arkham',
-      tags: ['exchange', 'cex'],
-    },
-    {
-      address: '0x742d35Cc6634C0532925a3b844Bc9e7595f1b5E0',
-      chain: 'ethereum',
-      label: 'Bitfinex',
-      source: 'arkham',
-      tags: ['exchange', 'cex'],
-    },
-    {
-      address: '0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8',
-      chain: 'ethereum',
-      label: 'Binance 7',
-      source: 'arkham',
-      tags: ['exchange', 'cex'],
-    },
-    {
-      address: '0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a',
-      chain: 'ethereum',
-      label: 'Arbitrum Bridge',
-      source: 'manual',
-      tags: ['bridge', 'l2'],
-    },
-  ];
-
-  for (const wallet of defaults) {
-    addWallet(wallet);
+      label: whale.label,
+      source: whale.source,
+      tags: whale.tags,
+    });
   }
+  
+  console.log(`📋 Loaded ${ethWhalesData.length} ETH whale wallets`);
 }
 
 // Auto-seed on module load

@@ -1,0 +1,182 @@
+[
+  {
+    "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "label": "Vitalik Buterin",
+    "source": "manual",
+    "tags": ["founder", "influencer"]
+  },
+  {
+    "address": "0x47ac0Fb4F2D84898e4D9E7b4DaB3C24507a6D503",
+    "label": "Binance",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f1b5E0",
+    "label": "Bitfinex",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8",
+    "label": "Binance 7",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a",
+    "label": "Arbitrum Bridge",
+    "source": "manual",
+    "tags": ["bridge", "l2"]
+  },
+  {
+    "address": "0x28C6c06298d514Db089934071355E5743bf21d60",
+    "label": "Binance 14",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549",
+    "label": "Binance 15",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0xDFd5293D8e347dFe59E90eFd55b2956a1343963d",
+    "label": "Binance 16",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x56Eddb7aa87536c09CCc2793473599fD21A8b17F",
+    "label": "Binance 17",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0xA7EFAe728D2936e78BDA97dc267687568dD593f3",
+    "label": "OKX",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x6cC5F688a315f3dC28A7781717a9A798a59fDA7b",
+    "label": "OKX 2",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x236F233dBf78341d25fB0F1bD14cb2bA4b8a777c",
+    "label": "Coinbase 1",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0xA9D1e08C7793af67e9d92fe308d5697FB81d3E43",
+    "label": "Coinbase 10",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x71660c4005BA85c37ccec55d0C4493E66Fe775d3",
+    "label": "Coinbase 3",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x503828976D22510aad0201ac7EC88293211D23Da",
+    "label": "Coinbase 2",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0xddfAbCdc4D8FfC6d5beaf154f18B778f892A0740",
+    "label": "Coinbase 4",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x3bfC20f0B9aFcAcE800D73D2191166FF16540258",
+    "label": "Kraken 4",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x267be1C1D684F78cb4F6a176C4911b741E4Ffdc0",
+    "label": "Kraken",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x189B9cBd4AfF470aF2C0102f365FC1823d857965",
+    "label": "Jump Trading",
+    "source": "arkham",
+    "tags": ["fund", "market-maker"]
+  },
+  {
+    "address": "0x9696f59E4d72E237BE84fFD425DCaD154Bf96976",
+    "label": "Jump Trading 2",
+    "source": "arkham",
+    "tags": ["fund", "market-maker"]
+  },
+  {
+    "address": "0xe93381fB4c4F14bDa253907b18faD305D799241a",
+    "label": "Wintermute",
+    "source": "arkham",
+    "tags": ["fund", "market-maker"]
+  },
+  {
+    "address": "0x0D0707963952f2fBA59dD06f2b425ace40b492Fe",
+    "label": "Wintermute 2",
+    "source": "arkham",
+    "tags": ["fund", "market-maker"]
+  },
+  {
+    "address": "0xDBF5E9c5206d0dB70a90108bf936DA60221dC080",
+    "label": "Wintermute 3",
+    "source": "arkham",
+    "tags": ["fund", "market-maker"]
+  },
+  {
+    "address": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+    "label": "Paradigm",
+    "source": "arkham",
+    "tags": ["fund", "vc"]
+  },
+  {
+    "address": "0xB1AdceddB2941033a090dD166a462fe1c2029484",
+    "label": "Three Arrows Capital",
+    "source": "arkham",
+    "tags": ["fund", "defunct"]
+  },
+  {
+    "address": "0x40ec5B33f54e0E8A33A975908C5BA1c14e5BbbDf",
+    "label": "Polygon Bridge",
+    "source": "manual",
+    "tags": ["bridge", "l2"]
+  },
+  {
+    "address": "0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1",
+    "label": "Optimism Bridge",
+    "source": "manual",
+    "tags": ["bridge", "l2"]
+  },
+  {
+    "address": "0x49048044D57e1C92A77f79988d21Fa8fAF74E97e",
+    "label": "Base Bridge",
+    "source": "manual",
+    "tags": ["bridge", "l2"]
+  },
+  {
+    "address": "0xF977814e90dA44bFA03b6295A0616a897441aceC",
+    "label": "Binance 8",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  },
+  {
+    "address": "0x5a52E96BAcdaBb82fd05763E25335261B270Efcb",
+    "label": "Binance 9",
+    "source": "arkham",
+    "tags": ["exchange", "cex"]
+  }
+]
