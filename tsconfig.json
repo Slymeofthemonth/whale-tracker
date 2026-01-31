@@ -10,7 +10,15 @@
     "outDir": "dist",
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@whale-tracker/shared": ["./shared/src/index.ts"],
+      "@whale-tracker/wallets": ["./packages/wallets/src/index.ts"],
+      "@whale-tracker/events": ["./packages/events/src/index.ts"],
+      "@whale-tracker/indexer": ["./packages/indexer/src/index.ts"],
+      "@whale-tracker/api": ["./packages/api/src/index.ts"]
+    },
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -13,9 +13,21 @@
     "lint": "eslint packages shared",
     "test": "npm run test --workspaces --if-present"
   },
-  "keywords": ["whale", "crypto", "x402", "ethereum", "tracking"],
+  "keywords": [
+    "whale",
+    "crypto",
+    "x402",
+    "ethereum",
+    "tracking"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

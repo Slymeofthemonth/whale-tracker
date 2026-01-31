@@ -113,5 +113,8 @@ export function seedDefaultWallets(): void {
   }
 }
 
+// Auto-seed on module load
+seedDefaultWallets();
+
 // Export types
 export type { Wallet, Chain };
