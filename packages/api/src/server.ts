@@ -17,6 +17,8 @@ import type { Chain } from '@whale-tracker/shared';
 const PORT = parseInt(process.env.PORT || '3000');
 const DB_PATH = process.env.DB_PATH || './data/whale-events.db';
 
+console.log('🔧 Starting Whale Tracker Agent (Lucid Agents SDK v1.0.0)');
+
 // Initialize wallets and event store
 seedDefaultWallets();
 const eventStore = new SQLiteEventStore(DB_PATH);
