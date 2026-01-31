@@ -19,7 +19,7 @@
     "@whale-tracker/wallets": "*",
     "@whale-tracker/events": "*",
     "@whale-tracker/indexer": "*",
-    "zod": "^3.24.0"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "esbuild": "^0.24.0"
