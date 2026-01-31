@@ -10,6 +10,7 @@ import { ethers } from 'ethers';
 import { getAddresses, getWallets } from '@whale-tracker/wallets';
 import { SQLiteEventStore, createEvent } from '@whale-tracker/events';
 import { DEFAULT_CONFIG, Transfer, Chain, Wallet } from '@whale-tracker/shared';
+import { getPriceOracle, CoinGeckoPriceOracle } from './lib/price-oracle.js';
 
 export interface IndexerConfig {
   chain: Chain;
@@ -25,16 +26,15 @@ const DEFAULT_RPC_URLS: Record<Chain, string> = {
   base: 'https://mainnet.base.org',
 };
 
-// Rough ETH price for USD conversion (in prod, fetch from oracle)
-const ETH_PRICE_USD = 3200;
-
 export class Indexer {
   private config: IndexerConfig;
   private provider: ethers.JsonRpcProvider;
   private eventStore: SQLiteEventStore;
+  private priceOracle: CoinGeckoPriceOracle;
   private running = false;
   private lastBlock: number = 0;
   private walletMap: Map<string, Wallet> = new Map();
+  private ethPrice: number = 0;
 
   constructor(config: Partial<IndexerConfig> = {}) {
     this.config = {
@@ -47,11 +47,15 @@ export class Indexer {
     
     this.provider = new ethers.JsonRpcProvider(this.config.rpcUrl);
     this.eventStore = new SQLiteEventStore(this.config.dbPath);
+    this.priceOracle = getPriceOracle();
   }
 
   async start(): Promise<void> {
     this.running = true;
     console.log(`🔍 Indexer starting for ${this.config.chain}`);
+    
+    // Fetch initial ETH price
+    await this.updateEthPrice();
     
     // Build wallet lookup map
     const wallets = getWallets(this.config.chain);
@@ -65,9 +69,15 @@ export class Indexer {
     console.log(`📦 Starting from block ${this.lastBlock}`);
 
     // Start polling loop
+    let pollCount = 0;
     while (this.running) {
       try {
+        // Refresh ETH price every 10 polls (~2.5 min with 15s interval)
+        if (pollCount % 10 === 0) {
+          await this.updateEthPrice();
+        }
         await this.poll();
+        pollCount++;
       } catch (err) {
         console.error('❌ Poll error:', err);
       }
@@ -85,6 +95,18 @@ export class Indexer {
     return this.eventStore;
   }
 
+  private async updateEthPrice(): Promise<void> {
+    const price = await this.priceOracle.getEthPrice();
+    if (price > 0) {
+      this.ethPrice = price;
+      console.log(`💰 ETH price: $${price.toLocaleString()}`);
+    } else if (this.ethPrice === 0) {
+      // Fallback if we can't fetch and have no cached price
+      this.ethPrice = 3200;
+      console.warn('⚠️ Could not fetch ETH price, using fallback: $3200');
+    }
+  }
+
   private async poll(): Promise<void> {
     const currentBlock = await this.provider.getBlockNumber();
     
@@ -93,9 +115,6 @@ export class Indexer {
     }
 
     console.log(`🔄 Checking blocks ${this.lastBlock + 1} to ${currentBlock}`);
-    
-    // Get tracked addresses
-    const addresses = Array.from(this.walletMap.keys());
     
     // For each new block, check for transfers involving our wallets
     for (let blockNum = this.lastBlock + 1; blockNum <= currentBlock; blockNum++) {
@@ -125,9 +144,9 @@ export class Indexer {
       return; // Neither party is tracked
     }
 
-    // Calculate USD value (ETH only for now)
+    // Calculate USD value using live price
     const valueEth = parseFloat(ethers.formatEther(tx.value));
-    const valueUsd = valueEth * ETH_PRICE_USD;
+    const valueUsd = valueEth * this.ethPrice;
     
     if (valueUsd < this.config.minValueUsd) {
       return; // Below threshold
@@ -182,3 +201,4 @@ if (require.main === module) {
 }
 
 export { getAddresses, getWallets } from '@whale-tracker/wallets';
+export { getPriceOracle, CoinGeckoPriceOracle } from './lib/price-oracle.js';
