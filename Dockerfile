@@ -6,8 +6,10 @@ ARG CACHE_BUST=v3
 
 WORKDIR /app
 
-# Install build deps for native modules
-RUN apk add --no-cache python3 make g++
+# Install build deps for native modules and bun
+RUN apk add --no-cache python3 make g++ curl bash
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:${PATH}"
 
 # Copy package files
 COPY package*.json ./
