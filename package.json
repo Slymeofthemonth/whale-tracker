@@ -9,11 +9,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "bun run build:packages && bun run build:api",
-    "build:packages": "bun run --cwd shared build && bun run --cwd packages/wallets build && bun run --cwd packages/events build && bun run --cwd packages/indexer build",
-    "build:api": "bun run --cwd packages/api build",
-    "dev": "bun run --cwd packages/api dev",
-    "start": "bun run --cwd packages/api start"
+    "build": "npm run build:packages && npm run build:api",
+    "build:packages": "cd shared && npm run build && cd ../packages/wallets && npm run build && cd ../events && npm run build && cd ../indexer && npm run build",
+    "build:api": "cd packages/api && npm run build",
+    "dev": "cd packages/api && npm run dev",
+    "start": "cd packages/api && npm run start"
   },
   "keywords": [
     "whale",

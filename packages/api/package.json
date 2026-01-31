@@ -6,9 +6,9 @@
   "description": "x402 API endpoints for whale tracking",
   "main": "dist/server.js",
   "scripts": {
-    "build": "bun build src/server.ts --outdir dist --target bun",
-    "dev": "bun --watch src/server.ts",
-    "start": "bun dist/server.js"
+    "build": "esbuild src/server.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/server.js --sourcemap",
+    "dev": "node --watch dist/server.js",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@lucid-agents/core": "latest",
@@ -20,5 +20,8 @@
     "@whale-tracker/events": "*",
     "@whale-tracker/indexer": "*",
     "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
   }
 }
