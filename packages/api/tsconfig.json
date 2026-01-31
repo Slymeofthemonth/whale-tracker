@@ -2,7 +2,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "composite": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../wallets" },
+    { "path": "../events" },
+    { "path": "../indexer" }
+  ]
 }

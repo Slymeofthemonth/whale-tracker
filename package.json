@@ -4,11 +4,11 @@
   "private": true,
   "description": "Whale wallet tracking x402 API - track significant wallet movements on-chain",
   "workspaces": [
-    "packages/*",
-    "shared"
+    "shared",
+    "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "tsc -b shared packages/wallets packages/events packages/indexer packages/api",
     "dev": "npm run dev --workspaces --if-present",
     "lint": "eslint packages shared",
     "test": "npm run test --workspaces --if-present"
