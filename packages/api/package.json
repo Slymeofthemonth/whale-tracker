@@ -2,21 +2,23 @@
   "name": "@whale-tracker/api",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "x402 API endpoints for whale tracking",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsx watch src/server.ts",
-    "start": "node dist/server.js",
-    "test": "vitest"
+    "build": "bun build src/server.ts --outdir dist --target bun",
+    "dev": "bun --watch src/server.ts",
+    "start": "bun dist/server.js"
   },
   "dependencies": {
+    "@lucid-agents/core": "latest",
+    "@lucid-agents/http": "latest",
+    "@lucid-agents/hono": "latest",
+    "@lucid-agents/payments": "latest",
     "@whale-tracker/shared": "*",
     "@whale-tracker/wallets": "*",
     "@whale-tracker/events": "*",
     "@whale-tracker/indexer": "*",
-    "@hono/node-server": "^1.8.0",
-    "hono": "^4.0.0"
+    "zod": "^3.24.0"
   }
 }

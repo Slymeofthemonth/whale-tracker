@@ -2,18 +2,18 @@
   "name": "whale-tracker",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Whale wallet tracking x402 API - track significant wallet movements on-chain",
   "workspaces": [
     "shared",
     "packages/*"
   ],
   "scripts": {
-    "build": "node esbuild.config.mjs",
-    "build:check": "tsc -p tsconfig.build.json --noEmit",
-    "dev": "npm run dev --workspaces --if-present",
-    "lint": "eslint packages shared",
-    "test": "npm run test --workspaces --if-present",
-    "start": "node dist/server.js"
+    "build": "bun run build:packages && bun run build:api",
+    "build:packages": "bun run --cwd shared build && bun run --cwd packages/wallets build && bun run --cwd packages/events build && bun run --cwd packages/indexer build",
+    "build:api": "bun run --cwd packages/api build",
+    "dev": "bun run --cwd packages/api dev",
+    "start": "bun run --cwd packages/api start"
   },
   "keywords": [
     "whale",
@@ -24,13 +24,11 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "bun": ">=1.0.0"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/better-sqlite3": "^7.6.13",
-    "@types/node": "^25.1.0",
-    "esbuild": "^0.25.0",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

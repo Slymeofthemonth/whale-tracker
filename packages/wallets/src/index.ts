@@ -6,7 +6,7 @@
  */
 
 import { Wallet, Chain } from '@whale-tracker/shared';
-import ethWhalesData from './data/eth-whales.json';
+import ethWhalesData from './data/eth-whales.json' with { type: 'json' };
 
 // In-memory wallet store
 const wallets: Map<string, Wallet> = new Map();
