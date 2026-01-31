@@ -7,13 +7,16 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/index.ts",
-    "start": "node dist/index.js",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
     "test": "vitest"
   },
   "dependencies": {
     "@whale-tracker/shared": "*",
     "@whale-tracker/wallets": "*",
+    "@whale-tracker/events": "*",
+    "@whale-tracker/indexer": "*",
+    "@hono/node-server": "^1.8.0",
     "hono": "^4.0.0"
   }
 }
