@@ -8,10 +8,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc -b shared packages/wallets packages/events packages/indexer packages/api",
+    "build": "tsc -p tsconfig.build.json",
     "dev": "npm run dev --workspaces --if-present",
     "lint": "eslint packages shared",
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present",
+    "start": "node dist/packages/api/src/server.js"
   },
   "keywords": [
     "whale",

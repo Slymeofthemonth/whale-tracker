@@ -11,7 +11,14 @@
     "declarationMap": true,
     "sourceMap": true,
     "composite": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@whale-tracker/shared": ["./shared"],
+      "@whale-tracker/wallets": ["./packages/wallets/src"],
+      "@whale-tracker/events": ["./packages/events/src"],
+      "@whale-tracker/indexer": ["./packages/indexer/src"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

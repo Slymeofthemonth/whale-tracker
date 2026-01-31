@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@whale-tracker/shared": ["./shared/index.ts"],
+      "@whale-tracker/shared/*": ["./shared/*"],
+      "@whale-tracker/wallets": ["./packages/wallets/src/index.ts"],
+      "@whale-tracker/wallets/*": ["./packages/wallets/src/*"],
+      "@whale-tracker/events": ["./packages/events/src/index.ts"],
+      "@whale-tracker/events/*": ["./packages/events/src/*"],
+      "@whale-tracker/indexer": ["./packages/indexer/src/index.ts"],
+      "@whale-tracker/indexer/*": ["./packages/indexer/src/*"]
+    }
+  },
+  "include": [
+    "shared/**/*.ts",
+    "packages/*/src/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}
