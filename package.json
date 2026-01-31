@@ -8,11 +8,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node esbuild.config.mjs",
+    "build:check": "tsc -p tsconfig.build.json --noEmit",
     "dev": "npm run dev --workspaces --if-present",
     "lint": "eslint packages shared",
     "test": "npm run test --workspaces --if-present",
-    "start": "node dist/packages/api/src/server.js"
+    "start": "node dist/server.js"
   },
   "keywords": [
     "whale",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.1.0",
+    "esbuild": "^0.25.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }

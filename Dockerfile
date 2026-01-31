@@ -3,6 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 COPY shared/package.json ./shared/
@@ -17,7 +20,7 @@ RUN npm install
 # Copy source files
 COPY . .
 
-# Build all packages
+# Bundle with esbuild
 RUN npm run build
 
 # Production stage
@@ -25,16 +28,21 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Install runtime dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
 # Create data directory for SQLite
 RUN mkdir -p /app/data
 
-# Copy built files and dependencies
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
+# Copy bundled file
+COPY --from=builder /app/dist/server.js ./dist/
+COPY --from=builder /app/dist/server.js.map ./dist/
 
-# Copy wallet data JSON (needed at runtime)
-COPY --from=builder /app/packages/wallets/src/data ./packages/wallets/src/data
+# Copy node_modules for native modules (better-sqlite3)
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copy package.json for module resolution
+COPY --from=builder /app/package.json ./
 
 # Set environment
 ENV NODE_ENV=production
@@ -43,5 +51,5 @@ ENV DB_PATH=/app/data/whale-events.db
 
 EXPOSE 3000
 
-# Run the unified server
-CMD ["node", "dist/packages/api/src/server.js"]
+# Run the bundled server
+CMD ["node", "dist/server.js"]
