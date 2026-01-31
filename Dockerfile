@@ -20,8 +20,8 @@ RUN npm install
 # Copy source files
 COPY . .
 
-# Build - outputs to dist/server.js
-RUN npm run build
+# Cache bust and build
+RUN echo "Build v2 - $(date)" && npm run build && ls -la dist/ && echo "Build complete"
 
 # Production stage
 FROM node:20-alpine
