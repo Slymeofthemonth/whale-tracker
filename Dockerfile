@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-COPY packages/shared/package.json ./packages/shared/
+COPY shared/package.json ./shared/
 COPY packages/wallets/package.json ./packages/wallets/
 COPY packages/events/package.json ./packages/events/
 COPY packages/indexer/package.json ./packages/indexer/
@@ -31,14 +31,24 @@ RUN mkdir -p /app/data
 # Copy built files and dependencies
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
-COPY --from=builder /app/packages/shared/package.json ./packages/shared/
+
+# Shared
+COPY --from=builder /app/shared/dist ./shared/dist
+COPY --from=builder /app/shared/package.json ./shared/
+
+# Wallets (including data files)
 COPY --from=builder /app/packages/wallets/dist ./packages/wallets/dist
 COPY --from=builder /app/packages/wallets/package.json ./packages/wallets/
+
+# Events
 COPY --from=builder /app/packages/events/dist ./packages/events/dist
 COPY --from=builder /app/packages/events/package.json ./packages/events/
+
+# Indexer
 COPY --from=builder /app/packages/indexer/dist ./packages/indexer/dist
 COPY --from=builder /app/packages/indexer/package.json ./packages/indexer/
+
+# API
 COPY --from=builder /app/packages/api/dist ./packages/api/dist
 COPY --from=builder /app/packages/api/package.json ./packages/api/
 
