@@ -1,5 +1,8 @@
 # Whale Tracker Agent - Lucid Agents SDK
+# Cache bust: v3-20260131-2320
 FROM node:20-alpine AS builder
+
+ARG CACHE_BUST=v3
 
 WORKDIR /app
 
