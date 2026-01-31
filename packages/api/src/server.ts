@@ -27,17 +27,28 @@ async function main() {
   console.log('🐋 Whale Tracker starting...');
   console.log(`📂 Database: ${DB_PATH}`);
 
-  // Create agent with payments extension
-  const agent = await createAgent({
-    name: 'whale-tracker',
-    version: '1.0.0',
-    description: 'Track significant whale wallet movements on Ethereum. Paid API via x402.',
-  })
-    .use(http())
-    .use(payments({ config: paymentsFromEnv() }))
-    .build();
+  try {
+    // Create agent - payments optional if env vars not set
+    const agentBuilder = createAgent({
+      name: 'whale-tracker',
+      version: '1.0.0',
+      description: 'Track significant whale wallet movements on Ethereum. Paid API via x402.',
+    }).use(http());
+    
+    // Only add payments if configured
+    const paymentsAddr = process.env.PAYMENTS_RECEIVABLE_ADDRESS;
+    if (paymentsAddr) {
+      console.log(`💰 Payments enabled: ${paymentsAddr}`);
+      agentBuilder.use(payments({ config: paymentsFromEnv() }));
+    } else {
+      console.log('⚠️  No PAYMENTS_RECEIVABLE_ADDRESS - running without x402 payments');
+    }
+    
+    const agent = await agentBuilder.build();
+    console.log('✅ Agent built successfully');
 
-  const { app, addEntrypoint } = await createAgentApp(agent);
+    const { app, addEntrypoint } = await createAgentApp(agent);
+    console.log('✅ Agent app created with Hono adapter');
 
   // Free health check endpoint
   addEntrypoint({
@@ -198,6 +209,10 @@ async function main() {
     port: PORT,
     fetch: app.fetch,
   });
+  } catch (err) {
+    console.error('❌ Failed to initialize agent:', err);
+    throw err;
+  }
 }
 
 main().catch(console.error);
